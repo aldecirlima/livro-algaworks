@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+	<ui:define name="titulo">Calculadora</ui:define>
+	<ui:define name="corpo">
+		<h:form id="frm">
+			<h:messages />
+			<h:outputLabel value="Seu nome: " for="seuNome" />
+			<h:inputText size="12" value="#{calculadoraBean.nome}" id="seuNome"
+				label="Seu nome" required="true"
+				requiredMessage="Informe o seu nome."
+				validatorMessage="Informe o seu nome de 3 a 15 caracteres.">
+				<f:validateLength minimum="3" maximum="15" />
+			</h:inputText>
+			<br />
+			<br />
+			<h:inputText size="12" value="#{calculadoraBean.valorA}"
+				label="Valor A" required="true" />
+			+
+			<h:inputText size="12" value="#{calculadoraBean.valorB}"
+				label="Valor B" required="true" />
+			<br />
+			<br />
+			<h:panelGroup rendered="#{calculadoraBean.resultado != null}">
+				<h:outputText value="#{calculadoraBean.nome}, o resultado é " />
+				<h:outputText value="#{calculadoraBean.resultado}" />
+				<br />
+			</h:panelGroup>
+			<h:commandButton value="Somar" action="#{calculadoraBean.somar}" />
+		</h:form>
+
+	</ui:define>
+</ui:composition>
